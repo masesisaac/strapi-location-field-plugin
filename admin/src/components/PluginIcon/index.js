@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon } from "@strapi/design-system/Icon";
-import { Flex } from "@strapi/design-system/Flex";
+import { Flex } from "@strapi/design-system";
 import { PinMap } from "@strapi/icons";
 
 const IconBox = styled(Flex)`
@@ -15,7 +14,7 @@ const IconBox = styled(Flex)`
 const MapPickerIcon = () => {
     return (
         <IconBox justifyContent="center" alignItems="center" width={7} height={6} hasRadius aria-hidden>
-            <Icon as={PinMap} />
+            <PinMap />
         </IconBox>
     );
 };
