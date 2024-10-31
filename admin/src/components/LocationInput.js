@@ -6,7 +6,7 @@ import { NumberInput, Flex, Box } from "@strapi/design-system";
 import { Combobox } from "@strapi/design-system";
 import { ComboboxOption } from "@strapi/design-system";
 
-import { request } from "@strapi/helper-plugin";
+import { useFetchClient } from "@strapi/strapi/admin";
 
 // https://www.google.com/maps/search/?api=1&query=Google&query_place_id=<place_id>
 
@@ -28,10 +28,12 @@ export default function Input({
 		"" || (value !== "null" ? JSON.parse(value).description : "")
 	);
 
+  const { get } = useFetchClient();
+
 	const getConfigDetails = async () => {
 		const { signal } = new AbortController();
-		const { fields, autocompletionRequestOptions, googleMapsApiKey } =
-			await request("/location-field/config", {
+		const { data: { fields, autocompletionRequestOptions, googleMapsApiKey } } =
+			await get("/location-field/config", {
 				method: "GET",
 				signal,
 			});
